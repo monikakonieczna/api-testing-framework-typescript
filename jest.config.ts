@@ -1,12 +1,9 @@
-import type { Config } from '@jest/types';
+import { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-  verbose: true,
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  },
+  preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
+  setupFiles: ['<rootDir>/src/setupTests.ts'],
 };
 
 export default config;
