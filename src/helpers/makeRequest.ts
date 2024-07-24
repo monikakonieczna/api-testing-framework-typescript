@@ -1,4 +1,5 @@
 import request, { Response } from 'supertest';
+import { App } from 'supertest/types';
 /**
  * A helper function to make HTTP requests, which can be used across different tests.
  * @param method 

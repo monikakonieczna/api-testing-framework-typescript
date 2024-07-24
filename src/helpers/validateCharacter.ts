@@ -7,5 +7,12 @@ export function validateCharacter(character: any) {
   expect(character).toHaveProperty('name');
   expect(character).toHaveProperty('status');
   expect(character).toHaveProperty('species');
-  // Add more fields as necessary
+  expect(character).toHaveProperty('type');
+  expect(character).toHaveProperty('gender');
+  expect(character).toHaveProperty('origin');
+  expect(character).toHaveProperty('location');
+  expect(character).toHaveProperty('image');
+  expect(character).toHaveProperty('episode');
+  expect(character).toHaveProperty('url');
+  expect(character).toHaveProperty('created');
 }
