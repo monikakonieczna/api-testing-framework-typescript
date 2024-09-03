@@ -5,17 +5,17 @@
 
 > **Note**
 >
-> +  **<a href="https://rickandmortyapi.com/">The Rick and Morty API
+> +  **<a style="color:green href="https://rickandmortyapi.com/">The Rick and Morty API
 </a>** ia REST(ish) and GraphQL API based on the television show Rick and Morty. You will have access to about hundreds of characters, images, locations and episodes. The Rick and Morty API is filled with canonical information as seen on the TV show.
 >
 
 ## Configuration
 This project uses TypeScript and Jest for testing. The tsconfig.json and jest.config.ts files are included in the root directory.
 
-- <a href="https://jestjs.io/">Jest</a>
-- <a href="https://www.typescriptlang.org/">TypeScript</a>
-- <a href="https://www.npmjs.com/package/supertest">SuperTest</a>
-- <a href="https://chancejs.com/">Chance</a>
+- <a style="color:green href="https://jestjs.io/">Jest</a>
+- <a style="color:green href="https://www.typescriptlang.org/">TypeScript</a>
+- <a style="color:green href="https://www.npmjs.com/package/supertest">SuperTest</a>
+- <a style="color:green href="https://chancejs.com/">Chance</a>
 
 This tests are purely for Jest, TS & SuperTest practice.
 
@@ -33,8 +33,8 @@ This project uses Jest, a popular JavaScript testing framework, to write and run
 - **Easy to Use** Jest is designed to be simple and straightforward, with an easy setup and intuitive API.
 - **Built-in Features** Jest comes with a lot of features out-of-the-box, such as test runners, assertion libraries, mocking capabilities, and code coverage reports.
 - **Great for API Testing** Jest, combined with tools like supertest, provides a comprehensive framework for writing and executing API tests.
-- <a href="https://jestjs.io/docs/getting-started">Jest Documentation</a>
-- <a href="https://jestjs.io/docs/cli">Jest CLI Options</a>
+- <a style="color:green href="https://jestjs.io/docs/getting-started">Jest Documentation</a>
+- <a style="color:green href="https://jestjs.io/docs/cli">Jest CLI Options</a>
 
 ### API Testing with Supertest
 This project uses Supertest to test the API endpoints. Supertest is a popular library for testing HTTP servers in Node.js, and it works seamlessly with testing frameworks like Jest to perform end-to-end HTTP testing.
