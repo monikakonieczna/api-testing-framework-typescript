@@ -6,10 +6,8 @@ import { validateCharacter } from '../../../helpers/validateCharacter';
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
 /**
- * 
  * Tests - GET Single Character by adding the id as a parameter
  * @group single_character
- * 
  */
 describe('Rick and Morty API Tests - Get One Character', () => {
   it('should fetch a single_character by ID', async () => {

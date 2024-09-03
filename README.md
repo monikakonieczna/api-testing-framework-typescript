@@ -51,7 +51,33 @@ This project uses Supertest to test the API endpoints. Supertest is a popular li
 
 - Node.js 
 
-## Useful Commands
+## Third-Party Libraries
+### Jest Runner Groups
+jest-runner-groups is a Jest plugin that adds tagging functionality to organize and run groups of tests based on custom tags. This is particularly useful for running specific subsets of tests or organizing tests by category.
+#### Usage
+To properly tag your tests, you need to add a docblock with the @group tag to every test file you have. For example, your test should look like the following to belong to the api/character/single_character group:
+```
+/**
+ * Tests - GET Single Character by adding the id as a parameter
+ * @group single_character
+ */
+describe('Rick and Morty API Tests - Get One Character', () => {
+  it('should fetch a single_character by ID', async () => {
+    const response = await makeRequest('get', `${BASE_URL}/character/1`);
+    assertStatusCode(response, 200);
+    validateCharacter(response.body);
+  });
+});
+```
+Your tests may have multiple groups per file.
+#### Run groups of tests
+I’ve set up several custom npm scripts in package.json to facilitate running different groups of tests. These scripts utilize jest-runner-groups to execute specific subsets of tests based on their assigned groups.
+The following scripts are configured to run tests based on different groups:
+- test:single_character: Runs only the tests tagged as "single_character".
+- test:all_characters: Runs only the tests tagged as "all_characters".
+- test:multiple_characters: Runs only the tests tagged as "multiple_characters".
+- test:filter_characters: Runs only the tests tagged as "filter_characters".
+- test:all: Runs all tests in the suite.
 
 ### Run All Tests
 
