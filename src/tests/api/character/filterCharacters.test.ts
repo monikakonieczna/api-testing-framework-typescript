@@ -6,6 +6,10 @@ import { makeRequest2 } from '../../../helpers/requestWithParams';
 import { validateCharacter } from '../../../helpers/validateCharacter';
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
+/**
+ * Tests - Filter characters using additional query parameters
+ * @group filter_characters
+ */
 describe('Rick and Morty API Tests - Filter characters', () => {
   it('should fetch characters based on query param: name', async () => {
     const response = await makeRequest('get', `${BASE_URL}/character/?name=morty`);

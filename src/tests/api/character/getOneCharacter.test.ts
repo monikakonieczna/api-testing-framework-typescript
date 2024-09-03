@@ -5,8 +5,14 @@ import { makeRequest } from '../../../helpers/makeRequest';
 import { validateCharacter } from '../../../helpers/validateCharacter';
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
+/**
+ * 
+ * Tests - GET Single Character by adding the id as a parameter
+ * @group single_character
+ * 
+ */
 describe('Rick and Morty API Tests - Get One Character', () => {
-  it('should fetch a single character by ID', async () => {
+  it('should fetch a single_character by ID', async () => {
     const response = await makeRequest('get', `${BASE_URL}/character/1`);
     assertStatusCode(response, 200);
     validateCharacter(response.body);
