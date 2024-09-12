@@ -79,8 +79,30 @@ The following scripts are configured to run tests based on different groups:
 - test:filter_characters: Runs only the tests tagged as "filter_characters".
 - test:all: Runs all tests in the suite.
 
-### Run All Tests
+### Parametrize Tests with Jest
+When writing api tests, it is common to have multiple test cases that run the same logic with different inputs and expected outputs. Jest provides a convenient way to handle this by allowing parameterized tests. This technique allows you to define a single test structure and run it multiple times with different values, reducing redundancy and improving maintainability.
+#### How to Parametrize Tests in Jest
+In Jest, you can use the test.each or describe.each functions to define parameterized tests. These functions allow you to specify a table of inputs and expected results that the test framework will loop over, executing the test for each case.
 
-```shell
-npm test
+Example of describe.each
+
+- describe.each groups related test cases that share common input data
+- Each test case within the describe block runs with the provided parameters
+
+```
+describe.each([
+  [99999, 404],
+  [0, 404],
+  [-1, 404],
+  [1.5, 404],
+])(
+  "Rick and Morty API Tests - Get One Character - Not Existing Character ID",
+  (id, statusCode) => {
+    it("Verifies that the API handle invalid character ID correctly", async () => {
+      const response = await makeRequest("get", `${BASE_URL}/character/${id}`);
+      assertStatusCode(response, statusCode);
+      validateNotFoundErrorMessage(response.body);
+    });
+  }
+);
 ```
