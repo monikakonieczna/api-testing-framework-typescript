@@ -2,7 +2,6 @@ import request, { Response } from "supertest";
 import { API_KEY } from "../../../config";
 import {
   assertStatusCode,
-  assertResponseBody,
 } from "../../../helpers/assertionsHelper";
 import { makeRequest } from "../../../helpers/makeRequest";
 const BASE_URL = "https://rickandmortyapi.com/api";
@@ -24,3 +23,21 @@ describe("Rick and Morty API Tests - Get Multiple Character", () => {
     expect(response.body).toBeInstanceOf(Array);
   });
 });
+
+/**
+ * Parametrized tests - GET Multiple Characters
+ * @group multiple_characters
+ */
+describe.each([
+  [200, "1,2"],
+  [200, "1,2,3"],
+  [200, "10,20,30"],
+])(
+  "Rick and Morty API Tests - Get All Characters - Valid characters ids",
+  (code, ids) => {
+    it("Verifies that the API returns multiple characters by their IDs with status 200", async () => {
+      const response = await makeRequest("get", `${BASE_URL}/character/${ids}`);
+      assertStatusCode(response, code);
+    });
+  }
+);
