@@ -5,7 +5,7 @@ import {
   validateCharacterData,
   validateNotFoundErrorMessage,
   validateNonIntegerErrorMessage,
-} from "../../../helpers/validateCharacter";
+} from "../../../helpers/validateCharacterHelper";
 const BASE_URL = "https://rickandmortyapi.com/api";
 
 /**
