@@ -4,13 +4,9 @@ import {
   assertStatusCode,
   assertResponseBody,
 } from "../../../helpers/assertionsHelper";
-import {
-  validateResponseStructure,
-  validateCharacterData,
-  validateNotFoundErrorMessage,
-  validateNonIntegerErrorMessage,
-} from "../../../helpers/validateCharacter";
 import { makeRequest } from "../../../helpers/makeRequest";
+import { validateNotFoundErrorMessage, validatePage2Structure, validatePage42Structure, validatePageStructure, validatePaginationInfo } from "../../../helpers/validateAllCharactersHelper";
+
 const BASE_URL = "https://rickandmortyapi.com/api";
 
 /**
@@ -18,57 +14,62 @@ const BASE_URL = "https://rickandmortyapi.com/api";
  * @group all_characters
  */
 describe("Rick and Morty API Tests - Get All Characters", () => {
-  it("Verifies that the API returns all characters and 200 status code", async () => {
+  it("Verifies that the API returns the first page of characters and 200 status code", async () => {
     const response = await makeRequest("get", `${BASE_URL}/character`);
     assertStatusCode(response, 200);
+    validatePageStructure(response.body);
   });
-});
-
-/**
- * Tests - Access the list of characters by using the /character endpoint.
- * @group all_characters
- */
-describe("Rick and Morty API Tests - Get All Characters - Pagination", () => {
-  it("Verifies that the pagination fields exist in the response.", async () => {
-    const response = await makeRequest("get", `${BASE_URL}/character`);
-  });
-});
-
-/**
- * Tests - Access the list of characters by using the /character endpoint.
- * @group all_characters
- */
-describe("Rick and Morty API Tests - Get All Characters - Characters data", () => {
-  it("Verifies that the response contains character data in a list.", async () => {
-    const response = await makeRequest("get", `${BASE_URL}/character`);
-  });
-  it("Verifies that the list of characters contains key fields like name, status, and species..", async () => {
-    const response = await makeRequest("get", `${BASE_URL}/character`);
-  });
-  it("Verifies whether the pagination works correctly.", async () => {
+  it("Verifies that the API returns the second page of characters and 200 status code", async () => {
     const response = await makeRequest("get", `${BASE_URL}/character?page=2`);
-    //# Page 2 should have a previous page
-    //# Page 2 should have a next page
+    assertStatusCode(response, 200);
+    validatePage2Structure(response.body);
+  });
+  it("Verifies that the API returns the last page of characters and 200 status code", async () => {
+    const response = await makeRequest("get", `${BASE_URL}/character?page=42`);
+    assertStatusCode(response, 200);
+    validatePage42Structure(response.body);
+  });
+  it("Verifies that the API returns the pagination info", async () => {
+    const response = await makeRequest("get", `${BASE_URL}/character`);
+    assertStatusCode(response, 200);
+    validatePaginationInfo(response.body, 826, 42, "https://rickandmortyapi.com/api/character?page=2", null)
   });
 });
+
+/**
+ * Parametrized tests - GET Single Character -  Pagination
+ * @group all_characters
+ */
+describe.each([
+  ["?page=2", 826, 42, "https://rickandmortyapi.com/api/character?page=3", "https://rickandmortyapi.com/api/character?page=1"],
+  ["?page=3", 826, 42, "https://rickandmortyapi.com/api/character?page=4", "https://rickandmortyapi.com/api/character?page=2"],
+  ["?page=42", 826, 42, null, "https://rickandmortyapi.com/api/character?page=41"]
+])(
+  "Rick and Morty API Tests - Get All Characters - Pagination Info",
+  (page, count, pages, next, prev) => {
+    it("Verifies that the API returns pagination info", async () => {
+      const response = await makeRequest("get", `${BASE_URL}/character${page}`);
+      assertStatusCode(response, 200);
+      validatePaginationInfo(response.body, count, pages, next, prev)
+    });
+  }
+);
 
 /**
  * Tests - Access the list of characters by using the /character endpoint with invalid data.
  * @group all_characters
  */
 describe.each([
-  [99999, 404],
+  [43, 404],
+  [44, 404],
   [0, 404],
   [-1, 404],
   [1.5, 404],
 ])(
   "Rick and Morty API Tests - Get All Characters - Invalid data",
   (page, statusCode) => {
-    it("Verifies that the API returns a 404 error for non existing page.", async () => {
-      const response = await makeRequest(
-        "get",
-        `${BASE_URL}/character?page=${page}`
-      );
+    it("Verifies that the API returns invalid result for a page beyond the last.", async () => {
+      const response = await makeRequest("get", `${BASE_URL}/character?page=${page}`);
       assertStatusCode(response, statusCode);
       validateNotFoundErrorMessage(response.body);
     });
