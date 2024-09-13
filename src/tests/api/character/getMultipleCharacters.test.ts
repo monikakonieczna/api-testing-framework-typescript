@@ -25,7 +25,7 @@ describe("Rick and Morty API Tests - Get Multiple Character", () => {
 });
 
 /**
- * Parametrized tests - GET Multiple Characters
+ * Parametrized tests - GET Multiple Characters - Multiple valid ids
  * @group multiple_characters
  */
 describe.each([
@@ -33,7 +33,7 @@ describe.each([
   [200, "1,2,3"],
   [200, "10,20,30"],
 ])(
-  "Rick and Morty API Tests - Get All Characters - Valid characters ids",
+  "Rick and Morty API Tests - Get Multiple Characters - Valid characters ids",
   (code, ids) => {
     it("Verifies that the API returns multiple characters by their IDs with status 200", async () => {
       const response = await makeRequest("get", `${BASE_URL}/character/${ids}`);
@@ -41,3 +41,47 @@ describe.each([
     });
   }
 );
+
+
+/**
+ * Parametrized tests - GET Multiple Characters - Non existing ids
+ * @group multiple_characters
+ */
+describe.each([
+  [404, "1,100"],
+  [404, "1,2,46"],
+  [404, "1,2,67"]
+])(
+  "Rick and Morty API Tests - Get Multiple Characters - Invalid characters ids",
+  (code, ids) => {
+    it("Verifies that the API returns multiple characters by their IDs with status 200", async () => {
+      const response = await makeRequest("get", `${BASE_URL}/character/${ids}`);
+      assertStatusCode(response, code);
+      //todo: assert error message
+    });
+  }
+);
+
+/**
+ * Tests - GET multiple characters - Multiple valid ids
+ * @group multiple_characters
+ */
+describe("Rick and Morty API Tests - Get Multiple Character", () => {
+  it("should return characters with consistent details", async () => {
+    const response = await makeRequest("get", `${BASE_URL}/character/[1,2]`);
+    assertStatusCode(response, 200);
+    //todo: check response body
+  });
+});
+
+/**
+ * Tests - GET multiple characters - Not valid type of ids
+ * @group multiple_characters
+ */
+describe("Rick and Morty API Tests - Get Multiple Character - Non numeric id", () => {
+  it("should return an error for invalid input format (non-numeric ID)", async () => {
+    const response = await makeRequest("get", `${BASE_URL}/character/[1,abc]`);
+    assertStatusCode(response, 500);
+    //todo: check response body
+  });
+});
