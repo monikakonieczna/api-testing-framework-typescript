@@ -5,8 +5,14 @@ interface Character {
   species: string;
   type: string;
   gender: string;
-  origin: object;
-  location: object;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
   image: string;
   episode: Array<string>;
   url: string;
