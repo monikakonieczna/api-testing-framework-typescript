@@ -1,5 +1,4 @@
 import request, { Response } from "supertest";
-import { App } from "supertest/types";
 /**
  * A helper function to make HTTP requests, which can be used across different tests.
  * @param method
@@ -14,17 +13,19 @@ export async function makeRequest(
   body?: any,
   headers?: Record<string, string>
 ): Promise<Response> {
-  let req = request(url)[method]("/");
+  // Call the method with the path (which is the url in this case)
+  let req = request("")[method](url);
 
+  // Set headers if provided
   if (headers) {
     Object.keys(headers).forEach((key) => {
       req = req.set(key, headers[key]);
     });
   }
 
+  // Add body if provided
   if (body) {
     req = req.send(body);
   }
-
   return req;
 }
