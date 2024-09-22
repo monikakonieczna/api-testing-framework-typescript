@@ -16,6 +16,8 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
+    "@types/chance": "^1.1.6",
+    "chance": "^1.1.12",
     "dotenv": "^16.4.5"
   }
 }
