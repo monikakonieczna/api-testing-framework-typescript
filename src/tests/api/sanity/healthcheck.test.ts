@@ -5,7 +5,6 @@ const BASE_URL = "https://rickandmortyapi.com/api/";
 
 /**
  * Sanity Tests
- * Quick checks to ensure that the most crucial functionalities of an application are working properly.
  * @group sanity_tests
  */
 describe("Rick and Morty API - Sanity Tests", () => {
