@@ -1,0 +1,47 @@
+name: Run Tests by Group
+on:
+  workflow_dispatch:
+    inputs:
+      testGroup:
+        description: 'Select a test group to filter tests'
+        required: true
+        default: 'all'
+        type: choice
+        options:         
+          - all
+          - sanity
+          - single_character
+          - all_characters
+          - multiple_characters
+          - filter_characters
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust based on your project's needs
+
+      - name: Install dependencies
+        run: npm install  # Change if you're using another package manager
+
+      - name: Run tests with group
+        run: |
+          if [ "${{ github.event.inputs.testGroup }}" == "all" ]; then
+            npm run test:all
+          if [ "${{ github.event.inputs.testGroup }}" == "sanity" ]; then
+            npm run test:sanity
+          if [ "${{ github.event.inputs.testGroup }}" == "single_character" ]; then
+            npm run test:single_character
+          if [ "${{ github.event.inputs.testGroup }}" == "all_characters" ]; then
+            npm run test:all_characters
+          if [ "${{ github.event.inputs.testGroup }}" == "multiple_characters" ]; then
+            npm run test:multiple_characters
+          if [ "${{ github.event.inputs.testGroup }}" == "filter_characters" ]; then
+            npm run test:filter_characters
