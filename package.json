@@ -1,4 +1,12 @@
 {
+  "name": "api-testing-framework-typescript",
+  "version": "1.0.0",
+  "description": "An example project demonstrating effective test automation practices using Jest, SuperTest, and TypeScript, tailored for the Rick and Morty API.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monikakonieczna/api-testing-framework-typescript.git"
+  },
+  "license": "MIT",
   "scripts": {
     "test:all": "jest",
     "test:single_character": "jest --group=single_character",
