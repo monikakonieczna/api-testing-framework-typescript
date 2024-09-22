@@ -35,13 +35,14 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.testGroup }}" == "all" ]; then
             npm run test:all
-          if [ "${{ github.event.inputs.testGroup }}" == "sanity" ]; then
+          elif [ "${{ github.event.inputs.testGroup }}" == "sanity" ]; then
             npm run test:sanity
-          if [ "${{ github.event.inputs.testGroup }}" == "single_character" ]; then
+          elif [ "${{ github.event.inputs.testGroup }}" == "single_character" ]; then
             npm run test:single_character
-          if [ "${{ github.event.inputs.testGroup }}" == "all_characters" ]; then
+          elif [ "${{ github.event.inputs.testGroup }}" == "all_characters" ]; then
             npm run test:all_characters
-          if [ "${{ github.event.inputs.testGroup }}" == "multiple_characters" ]; then
+          elif [ "${{ github.event.inputs.testGroup }}" == "multiple_characters" ]; then
             npm run test:multiple_characters
-          if [ "${{ github.event.inputs.testGroup }}" == "filter_characters" ]; then
+          elif [ "${{ github.event.inputs.testGroup }}" == "filter_characters" ]; then
             npm run test:filter_characters
+          fi
