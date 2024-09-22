@@ -6,6 +6,7 @@ on:
         description: 'Select a test group to filter tests'
         required: true
         default: 'all'
+        type: choice
         options:         
           - all
           - sanity
