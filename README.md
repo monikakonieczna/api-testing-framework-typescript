@@ -106,3 +106,28 @@ describe.each([
   }
 );
 ```
+
+## GitHub Actions
+### GitHub Actions - Nightly Workflow
+This repository includes a GitHub Actions workflow that runs every night at midnight (UTC). The workflow is triggered using a cron schedule and is designed to automate tasks like testing on a daily basis.
+
+#### Workflow Details:
+- **Trigger Time:** Midnight (00:00 UTC) every day.
+- **Workflow File:** [`.github/workflows/nightly-workflow.yml`](.github/workflows/nightly-workflow.yml)
+- **Key Tasks:**
+  - Automatically checks out the repository.
+  - Executes sanity tests
+
+### GitHub Actions - Run Tests By Group
+This repository includes a GitHub Actions workflow that allows you to run specific groups of tests on demand. The workflow can be manually triggered via the GitHub interface using `workflow_dispatch`, where you can select a test group to run.
+
+### Workflow Details:
+- **Trigger:** Manually using the `Run workflow` button from the GitHub Actions tab.
+- **Workflow File:** [`.github/workflows/run-tests-by-group.yml`](.github/workflows/run-tests-by-group.yml)
+- **Test Group Options:**
+  - `all`: Runs the full test suite.
+  - `sanity`: Runs a sanity check with a smaller set of key tests.
+  - `single_character`: Runs tests related to a single character.
+  - `all_characters`: Runs tests for all characters.
+  - `multiple_characters`: Runs tests involving multiple characters.
+  - `filter_characters`: Runs tests that filter characters.
