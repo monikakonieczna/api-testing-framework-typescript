@@ -20,37 +20,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'  # Adjust based on your project's needs
+          node-version: '20.x' 
 
       - name: Install dependencies
-        run: npm install  # Change if you're using another package manager
+        run: npm install 
 
       - name: Run tests with group
         run: |
-          if [ "${{ github.event.inputs.testGroup }}" == "all" ]; then
-            npm run test:all
-          elif [ "${{ github.event.inputs.testGroup }}" == "sanity" ]; then
-            npm run test:sanity
-          elif [ "${{ github.event.inputs.testGroup }}" == "single_character" ]; then
-            npm run test:single_character
-          elif [ "${{ github.event.inputs.testGroup }}" == "all_characters" ]; then
-            npm run test:all_characters
-          elif [ "${{ github.event.inputs.testGroup }}" == "multiple_characters" ]; then
-            npm run test:multiple_characters
-          elif [ "${{ github.event.inputs.testGroup }}" == "filter_characters" ]; then
-            npm run test:filter_characters
-          fi
+          case "${{ github.event.inputs.testGroup }}" in
+            all)
+              npm run test:all
+              ;;
+            sanity)
+              npm run test:sanity
+              ;;
+            single_character)
+              npm run test:single_character
+              ;;
+            all_characters)
+              npm run test:all_characters
+              ;;
+            multiple_characters)
+              npm run test:multiple_characters
+              ;;
+            filter_characters)
+              npm run test:filter_characters
+              ;;
+          esac
         env:
           CI: true
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: test-results
-          path: junit.xml 
+          path: test-report.html
