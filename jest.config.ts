@@ -8,8 +8,8 @@ const config: Config.InitialOptions = {
   reporters: [
     "default",
     [
-      "jest-junit",
-      { outputDirectory: "./test-results", outputName: "test-results.xml" },
+      "jest-html-reporter",
+      { outputDirectory: "./test-results", outputName: "test-results.html" },
     ],
   ],
 };
