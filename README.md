@@ -76,9 +76,11 @@ npm run test:sanity
 - src/interfaces/: TypeScript interfaces for typing and structure definitions.
 - src/test_data/: Sample data for tests.
 - src/tests/: Contains all test files.
-- setupTests.ts: A setup file for Jest, which runs before each test to load environment variables from .env file.
+- src/setupTests.ts: A setup file for Jest, which runs before each test to load environment variables from .env file.
 - jest.config.ts: Jest configuration file for test runner settings.
 - tsconfig.json: TypeScript configuration file that defines how the TypeScript compiler should behave.
+- .gitignore: This file specifies which files and directories should be ignored by Git.
+- package.json:  This is the core file for any Node.js project. It contains metadata about the project, including dependencies, scripts, and versioning.
 
 ## Third-Party Libraries
 ### Jest Runner Groups
