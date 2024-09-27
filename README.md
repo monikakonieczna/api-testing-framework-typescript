@@ -45,11 +45,40 @@ This project uses Supertest to test the API endpoints. Supertest is a popular li
 
 ## Getting Started
 
+## Prerequisites
+This guide will help you set up the project and run the tests locally.
+- Node.js (v18.x or higher recommended)
+- npm (comes with Node.js)
+
+## Setup Instructions
+1. Clone the repository
+```
+git clone https://github.com/monikakonieczna/api-testing-framework-typescript.git
+cd api-testing-framework-typescript
+```
+2. Install dependencies
+```
+npm install
+```
+3. Run tests
+To run all tests:
+```
+npm test
+```
+To run specific group of tests, like sanity tests:
+```
+npm run test:sanity
+```
+
 ## Project Structure
-
-### Prerequisites
-
-- Node.js 
+- .github/workflows/: GitHub Actions workflow configurations
+- src/helpers/: Helper functions and utilities used throughout the project.
+- src/interfaces/: TypeScript interfaces for typing and structure definitions.
+- src/test_data/: Sample data for tests.
+- src/tests/: Contains all test files.
+- setupTests.ts: A setup file for Jest, which runs before each test to load environment variables from .env file.
+- jest.config.ts: Jest configuration file for test runner settings.
+- tsconfig.json: TypeScript configuration file that defines how the TypeScript compiler should behave.
 
 ## Third-Party Libraries
 ### Jest Runner Groups
@@ -106,3 +135,28 @@ describe.each([
   }
 );
 ```
+
+## GitHub Actions
+### GitHub Actions - Nightly Workflow
+This repository includes a GitHub Actions workflow that runs every night at midnight (UTC). The workflow is triggered using a cron schedule and is designed to automate tasks like testing on a daily basis.
+
+#### Workflow Details:
+- **Trigger Time:** Midnight (00:00 UTC) every day.
+- **Workflow File:** [`.github/workflows/nightly-workflow.yml`](.github/workflows/nightly-workflow.yml)
+- **Key Tasks:**
+  - Automatically checks out the repository.
+  - Executes sanity tests
+
+### GitHub Actions - Run Tests By Group
+This repository includes a GitHub Actions workflow that allows you to run specific groups of tests on demand. The workflow can be manually triggered via the GitHub interface using `workflow_dispatch`, where you can select a test group to run.
+
+### Workflow Details:
+- **Trigger:** Manually using the `Run workflow` button from the GitHub Actions tab.
+- **Workflow File:** [`.github/workflows/run-tests-by-group.yml`](.github/workflows/run-tests-by-group.yml)
+- **Test Group Options:**
+  - `all`: Runs the full test suite.
+  - `sanity`: Runs a sanity check with a smaller set of key tests.
+  - `single_character`: Runs tests related to a single character.
+  - `all_characters`: Runs tests for all characters.
+  - `multiple_characters`: Runs tests involving multiple characters.
+  - `filter_characters`: Runs tests that filter characters.
