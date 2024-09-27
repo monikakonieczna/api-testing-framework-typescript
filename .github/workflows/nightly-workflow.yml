@@ -21,9 +21,7 @@ jobs:
 
       - name: Run Sanity Tests
         run: |
-              npm run test:sanity
-              ;;
-          esac
+                npm run test:sanity
         env:
           CI: true
 
