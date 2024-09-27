@@ -45,11 +45,40 @@ This project uses Supertest to test the API endpoints. Supertest is a popular li
 
 ## Getting Started
 
+## Prerequisites
+This guide will help you set up the project and run the tests locally.
+- Node.js (v18.x or higher recommended)
+- npm (comes with Node.js)
+
+## Setup Instructions
+1. Clone the repository
+```
+git clone https://github.com/monikakonieczna/api-testing-framework-typescript.git
+cd api-testing-framework-typescript
+```
+2. Install dependencies
+```
+npm install
+```
+3. Run tests
+To run all tests:
+```
+npm test
+```
+To run specific group of tests, like sanity tests:
+```
+npm run test:sanity
+```
+
 ## Project Structure
-
-### Prerequisites
-
-- Node.js 
+- .github/workflows/: GitHub Actions workflow configurations
+- src/helpers/: Helper functions and utilities used throughout the project.
+- src/interfaces/: TypeScript interfaces for typing and structure definitions.
+- src/test_data/: Sample data for tests.
+- src/tests/: Contains all test files.
+- setupTests.ts: A setup file for Jest, which runs before each test to load environment variables from .env file.
+- jest.config.ts: Jest configuration file for test runner settings.
+- tsconfig.json: TypeScript configuration file that defines how the TypeScript compiler should behave.
 
 ## Third-Party Libraries
 ### Jest Runner Groups
