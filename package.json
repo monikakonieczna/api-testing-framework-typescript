@@ -13,7 +13,7 @@
     "test:all_characters": "jest --group=all_characters",
     "test:multiple_characters": "jest --group=multiple_characters",
     "test:filter_characters": "jest --group=filter_characters",
-    "test:sanity": "jest --ci --reporters=default --reporters=jest-html-reporter --group=sanity_tests"
+    "test:sanity": "jest --group=sanity_tests"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
