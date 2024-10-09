@@ -162,3 +162,7 @@ This repository includes a GitHub Actions workflow that allows you to run specif
   - `all_characters`: Runs tests for all characters.
   - `multiple_characters`: Runs tests involving multiple characters.
   - `filter_characters`: Runs tests that filter characters.
+
+### GitHub Actions - Publish Jest Report as GitHub Page
+
+### Workflow Details:
