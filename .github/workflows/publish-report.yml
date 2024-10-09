@@ -53,7 +53,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: test-artifact
+          path: test-artifact
 
       - name: Deploy to GitHub Pages
         id: deployment
