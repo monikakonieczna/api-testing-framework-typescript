@@ -62,7 +62,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: test-results  # Ensure the path is correct for the artifact being uploaded
 
