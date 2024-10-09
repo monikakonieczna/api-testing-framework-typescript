@@ -9,7 +9,7 @@ const config: Config.InitialOptions = {
     "default",
     [
       "jest-html-reporter",
-      { outputPath: "test-results/report/test-results.html"},
+      { outputPath: "test-results/report/index.html"},
     ],
   ],
 };
