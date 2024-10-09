@@ -1,8 +1,6 @@
-name: Publish Jest Report
+name: Publish Sanity Tests Report V2
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
 
 permissions:

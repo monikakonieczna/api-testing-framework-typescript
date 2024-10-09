@@ -163,6 +163,30 @@ This repository includes a GitHub Actions workflow that allows you to run specif
   - `multiple_characters`: Runs tests involving multiple characters.
   - `filter_characters`: Runs tests that filter characters.
 
-### GitHub Actions - Publish Jest Report as GitHub Page
+### GitHub Actions - Publish Sanity Tests Report
+This workflow is designed to run sanity tests and publish the resulting report to GitHub Pages. It can be triggered manually using the workflow_dispatch event, allowing you to generate and deploy the report whenever needed.
+If you're interested in learning more about GitHub Pages and how to use it, visit <a href="https://docs.github.com/en/pages" style="color:green;">the GitHub Pages Documentation</a>.
 
 ### Workflow Details:
+- **Triggers:** Manual dispatch using the workflow_dispatch event
+- **Workflow File:** [`.github/workflows/publish-report.yml`](.github/workflows/publish-report.yml)
+- **Job: Deploy**
+This job encompasses all steps required to run the sanity tests and publish the report.
+- **Usage**
+To trigger this workflow - navigate to the Actions tab in your GitHub repository and manually run the Publish Sanity Tests Report V2 workflow.
+
+### GitHub Actions - Publish Sanity Tests Report V2
+This repository includes a GitHub Actions workflow designed to run sanity tests and publish the resulting report to GitHub Pages. The workflow is triggered on pushes to the main branch and can also be executed manually.
+
+### Workflow Details:
+- **Triggers:**
+  - On push to the main branch
+  - Manual dispatch using the workflow_dispatch event
+- **Workflow File:** [`.github/workflows/publish-report-2-jobs.yml`](.github/workflows/publish-report-2-jobs.yml)
+- **Jobs**
+The workflow consists of two main jobs: test and deploy.
+1. Test Job
+This job is responsible for running the sanity tests and generating the report.
+2. Deploy Job
+This job deploys the test report to GitHub Pages.
+- **Needs:** This job runs after the test job completes successfully.
