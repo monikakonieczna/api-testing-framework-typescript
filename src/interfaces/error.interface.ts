@@ -1,3 +1,0 @@
-interface Error {
-  error: string;
-}

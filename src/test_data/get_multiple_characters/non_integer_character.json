@@ -1,3 +1,0 @@
-{
-    "error": "Cast to Number failed for value \"NaN\" at path \"id\" for model \"Character\""
-}

@@ -1,1 +1,0 @@
-type Characters = Character[];
