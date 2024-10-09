@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '20.x' 
 
@@ -36,10 +36,10 @@ jobs:
         run: npm run test:sanity
       
       - name: Upload Test Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: test-results/test-results.html
+          path: test-results
 
        # Single deploy job since we're just deploying
   deploy:
@@ -49,27 +49,18 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Attempt to Download Test Results
-        id: download
-        run: |
-          echo "Trying to download test-results artifact..."
-          if actions/download-artifact@v3 --name test-results; then
-            echo "Artifact downloaded successfully."
-          else
-            echo "No artifact found or download failed."
-          fi
 
-      - name: Download Test Results
+      - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: test-results
+          path: test-results
+        
       - name: Check Downloaded Artifact
         run: |
           ls -l test-results  # List contents to verify that the artifact was downloaded
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v3
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
@@ -78,4 +69,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v3
