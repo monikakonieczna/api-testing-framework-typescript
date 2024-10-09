@@ -38,11 +38,12 @@ jobs:
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
-          name: test-results.html
+          name: test-results
           path: test-results/test-results.html
 
        # Single deploy job since we're just deploying
   deploy:
+    needs: test  # Ensure deploy only runs after tests complete successfully
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -53,13 +54,18 @@ jobs:
       - name: Download Test Results
         uses: actions/download-artifact@v3
         with:
-          name: test-results/test-results.html  # Matches the name used in the test job
+          name: test-results
+      - name: Check Downloaded Artifact
+        run: |
+          ls -l test-results  # List contents to verify that the artifact was downloaded
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: 'test-results'
+          path: test-results  # Ensure the path is correct for the artifact being uploaded
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
