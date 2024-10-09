@@ -1,4 +1,4 @@
-name: Publish Jest Report
+name: Publish jest report using 2 seperated jobs
 
 on:
   push:
@@ -15,11 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +32,23 @@ jobs:
 
       - name: Run Sanity Tests And Generate Report
         run: npm run test:sanity
+      
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: test-results/report
+
+
+  deploy:
+    needs: test 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +59,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: test-results/report
+          path: my-artifact
 
       - name: Deploy to GitHub Pages
         id: deployment
