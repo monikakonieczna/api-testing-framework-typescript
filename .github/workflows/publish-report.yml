@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x' 
 
@@ -36,7 +36,7 @@ jobs:
         run: npm run test:sanity
       
       - name: Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: test-results
@@ -51,22 +51,16 @@ jobs:
     steps:
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: test-results
           path: test-results
-        
-      - name: Check Downloaded Artifact
-        run: |
-          ls -l test-results  # List contents to verify that the artifact was downloaded
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: test-results  # Ensure the path is correct for the artifact being uploaded
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
