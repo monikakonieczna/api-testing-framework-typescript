@@ -1,4 +1,4 @@
-name: Publish jest report using 2 seperated jobs
+name: Publish Sanity Tests Report V2
 
 on:
   push:
