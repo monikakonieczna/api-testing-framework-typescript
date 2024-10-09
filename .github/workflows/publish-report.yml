@@ -57,8 +57,9 @@ jobs:
           path: test-results
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
+          name: test-results
           path: test-results  # Ensure the path is correct for the artifact being uploaded
 
       - name: Deploy to GitHub Pages
