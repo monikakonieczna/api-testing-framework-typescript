@@ -51,10 +51,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: List Available Artifacts
+      - name: Attempt to Download Test Results
+        id: download
         run: |
-          echo "Available artifacts in this job:"
-          ls -l .github/actions/download-artifact 
+          echo "Trying to download test-results artifact..."
+          if actions/download-artifact@v3 --name test-results; then
+            echo "Artifact downloaded successfully."
+          else
+            echo "No artifact found or download failed."
+          fi
+
       - name: Download Test Results
         uses: actions/download-artifact@v3
         with:
