@@ -53,12 +53,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: test-artifact
-          path: artifacts
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: artifacts
+          path: test-results/report
 
       - name: Deploy to GitHub Pages
         id: deployment
