@@ -13,6 +13,8 @@ on:
         required: true
         default: 'main'
 
+permissions:
+  contents: write 
 
 jobs:
   test:
