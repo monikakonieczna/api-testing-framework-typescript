@@ -38,8 +38,8 @@ jobs:
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: test-results
+          name: test-results.html
+          path: test-results/test-results.html
 
        # Single deploy job since we're just deploying
   deploy:
@@ -53,7 +53,7 @@ jobs:
       - name: Download Test Results
         uses: actions/download-artifact@v3
         with:
-          name: test-results  # Matches the name used in the test job
+          name: test-results/test-results.html  # Matches the name used in the test job
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
