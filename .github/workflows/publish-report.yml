@@ -49,11 +49,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: test-artifact
+          path: artifacts
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: test-artifact
+          path: artifacts
 
       - name: Deploy to GitHub Pages
         id: deployment
