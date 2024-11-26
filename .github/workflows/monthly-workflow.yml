@@ -1,4 +1,4 @@
-name: Nightly Workflow
+name: Monthly Workflow
 on:
   schedule:
     - cron: '0 0 1 * *'
